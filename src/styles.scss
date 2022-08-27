@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  background-color: #0e6cc4;
+  font-family: Ubuntu, sans-serif;
+}
+
+h2 {
+  color: #165691;
+}
+
+h1 {
+  text-align: center;
+  color: #165691;
+  font-size: 36px;
+}

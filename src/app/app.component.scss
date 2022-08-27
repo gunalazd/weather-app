@@ -1,0 +1,82 @@
+.app-wrapper {
+  width: 800px;
+  height: 800px;
+  background-color: #77daff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.tab-wrapper {
+  background-color: #d2f3ff;
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.search-weapper {
+  margin-bottom: 15px;
+}
+
+#search-field {
+  font-size: 20px;
+  border-radius: 5px;
+  border: 0;
+  padding: 5px;
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
+  font-size: 20px;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+
+  &:hover {
+    background: #d2f3ff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  }
+}
+
+.tab-selector {
+  width: 200px;
+
+  background-color: #a9e8ff7c;
+  font-size: 24px;
+  margin: 5px;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0);
+
+  &:hover {
+    border: 1px solid rgb(255, 255, 255);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    color: rgb(83, 83, 83);
+    text-decoration: none;
+  }
+
+  &.active {
+    background-color: #77daff;
+    border-color: #0e6cc4;
+  }
+}
