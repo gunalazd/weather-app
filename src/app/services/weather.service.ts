@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class WeatherService {
   private myAPIkey = 'eeacf27285660e2430921e791c1b719f';
+  private myAPIkey_IP_lookup = '0d31fd36d59a8da4732551c0735605e1';
 
   weatherInfo = new BehaviorSubject<{}>({});
   castWeather = this.weatherInfo.asObservable;
@@ -14,14 +15,11 @@ export class WeatherService {
   weatherForecast = new BehaviorSubject<{}>({});
   castForecast = this.weatherForecast.asObservable;
 
-  currentCity = 'Malaga';
-  lat = 0;
-  lon = 0;
+  userIP = '';
 
   constructor(private http: HttpClient) {}
 
   getWeatherData(city: string) {
-    this.currentCity = city;
     return this.http
       .get(
         'http://api.openweathermap.org/geo/1.0/direct?q=' +
@@ -30,10 +28,8 @@ export class WeatherService {
           this.myAPIkey
       )
       .subscribe((a: any) => {
-        this.lat = a[0].lat;
-        this.lon = a[0].lon;
-        this.getCurrentWeather(this.lat, this.lon);
-        this.getForecaset(this.lat, this.lon);
+        this.getCurrentWeather(a[0].lat, a[0].lon);
+        this.getForecaset(a[0].lat, a[0].lon);
       });
   }
 
@@ -49,7 +45,6 @@ export class WeatherService {
           this.myAPIkey
       )
       .subscribe((a) => {
-        console.log('getCurrent : ', a);
         this.weatherInfo.next(a);
       });
   }
@@ -65,8 +60,21 @@ export class WeatherService {
           this.myAPIkey
       )
       .subscribe((a) => {
-        console.log('getForecaset : ', a);
         this.weatherForecast.next(a);
       });
+  }
+
+  getUserLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.getCurrentWeather(
+          position.coords.latitude,
+          position.coords.longitude
+        );
+        this.getForecaset(position.coords.latitude, position.coords.longitude);
+      });
+    } else {
+      console.log('No support for geolocation');
+    }
   }
 }

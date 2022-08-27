@@ -19,8 +19,6 @@ export class ForecastComponent implements OnInit {
     this.ws.weatherForecast.subscribe((weatherForecast) => {
       this.weatherForecast = weatherForecast;
 
-      console.log('weatherForecast : ', this.weatherForecast);
-
       let temp_max = this.weatherForecast.list.map((r: any) => r.main.temp_max);
 
       let dates = this.weatherForecast.list.map((r: any) => r.dt);
