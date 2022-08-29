@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { WeatherService } from './services/weather.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { WeatherService } from './services/weather.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  @ViewChild('cityToLookFor') city!: ElementRef;
+
   constructor(private ws: WeatherService) {}
 
   ngOnInit(): void {
@@ -17,5 +19,6 @@ export class AppComponent implements OnInit {
 
   getWeatherData(cityName: string) {
     this.ws.getWeatherData(cityName);
+    this.city.nativeElement.value = '';
   }
 }

@@ -15,8 +15,6 @@ export class WeatherService {
   weatherForecast = new BehaviorSubject<{}>({});
   castForecast = this.weatherForecast.asObservable;
 
-  userIP = '';
-
   constructor(private http: HttpClient) {}
 
   getWeatherData(city: string) {

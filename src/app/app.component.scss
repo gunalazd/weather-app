@@ -1,7 +1,7 @@
 .app-wrapper {
   width: 800px;
   height: 700px;
-  background-color: #77daffc2;
+  background-color: #d6f2ffc7;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +11,7 @@
 }
 
 .tab-wrapper {
-  background-color: #d2f3ff;
+  background-color: #a7d0e3;
   width: -webkit-fill-available;
   display: flex;
   flex-direction: row;
@@ -37,31 +37,35 @@
 }
 
 button {
+  color: rgb(83, 83, 83);
   font-size: 20px;
   border-radius: 5px;
   margin: 5px;
-  padding: 5px;
+  padding: 5px 15px;
   border: 0;
   background: none;
   cursor: pointer;
 
   &:hover {
-    background: #d2f3ff9f;
+    background: #a7d0e3;
   }
 }
 
 .tab-selector {
   width: 200px;
-
-  background-color: #a9e8ff7c;
   font-size: 24px;
   margin: 5px;
   border-radius: 5px;
   padding: 5px;
-  border: 1px solid rgba(255, 255, 255, 0);
+  border: 2px solid rgb(142 193 218);
+
+  &.active {
+    background-color: rgb(142 193 218);
+    border-color: rgb(117, 159, 180);
+  }
 
   &:hover {
-    border: 1px solid rgb(255, 255, 255);
+    border: 2px solid rgb(255, 255, 255);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   }
@@ -71,11 +75,6 @@ button {
     justify-content: center;
     color: rgb(83, 83, 83);
     text-decoration: none;
-  }
-
-  &.active {
-    background-color: #77daff;
-    border-color: #0e6cc4;
   }
 }
 
@@ -102,5 +101,13 @@ button {
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.title-wrapper {
+  display: flex;
+
+  & img {
+    margin-left: 5px;
   }
 }
