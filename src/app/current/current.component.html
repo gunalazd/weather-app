@@ -1,6 +1,7 @@
 <div class="current-wrapper" *ngIf="this.weatherInfo.name">
   <h1 class="my-class">{{ this.weatherInfo.name }}</h1>
-  <h3 class="primary">{{ this.weatherInfo.main.temp }}°C</h3>
+  <img src="{{ weatherIconURL }}" alt="" class="center" />
+  <div class="primary">{{ this.weatherInfo.main.temp }}°C</div>
   <div class="secondary">
     Feels like {{ this.weatherInfo.main.feels_like }}°C
   </div>
