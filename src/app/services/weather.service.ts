@@ -7,7 +7,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class WeatherService {
   private myAPIkey = 'eeacf27285660e2430921e791c1b719f';
-  private myAPIkey_IP_lookup = '0d31fd36d59a8da4732551c0735605e1';
 
   weatherInfo = new BehaviorSubject<{}>({});
   castWeather = this.weatherInfo.asObservable;
@@ -16,6 +15,20 @@ export class WeatherService {
   castForecast = this.weatherForecast.asObservable;
 
   constructor(private http: HttpClient) {}
+
+  getUserGeolocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.getCurrentWeather(
+          position.coords.latitude,
+          position.coords.longitude
+        );
+        this.getForecaset(position.coords.latitude, position.coords.longitude);
+      });
+    } else {
+      console.log('No support for geolocation');
+    }
+  }
 
   getWeatherData(city: string) {
     return this.http
@@ -26,8 +39,12 @@ export class WeatherService {
           this.myAPIkey
       )
       .subscribe((a: any) => {
-        this.getCurrentWeather(a[0].lat, a[0].lon);
-        this.getForecaset(a[0].lat, a[0].lon);
+        if (a[0]?.lat) {
+          this.getCurrentWeather(a[0].lat, a[0].lon);
+          this.getForecaset(a[0].lat, a[0].lon);
+        } else {
+          alert('Invalid city name');
+        }
       });
   }
 
@@ -60,19 +77,5 @@ export class WeatherService {
       .subscribe((a) => {
         this.weatherForecast.next(a);
       });
-  }
-
-  getUserLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.getCurrentWeather(
-          position.coords.latitude,
-          position.coords.longitude
-        );
-        this.getForecaset(position.coords.latitude, position.coords.longitude);
-      });
-    } else {
-      console.log('No support for geolocation');
-    }
   }
 }

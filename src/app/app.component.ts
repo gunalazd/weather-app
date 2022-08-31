@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   constructor(private ws: WeatherService) {}
 
   ngOnInit(): void {
-    this.ws.getUserLocation();
+    this.ws.getUserGeolocation();
   }
 
   title = 'weather-app';

@@ -19,7 +19,7 @@ export class ForecastComponent implements OnInit {
     this.ws.weatherForecast.subscribe((weatherForecast) => {
       this.weatherForecast = weatherForecast;
 
-      let temp_max = this.weatherForecast.list.map((r: any) => r.main.temp_max);
+      let temp = this.weatherForecast.list.map((r: any) => r.main.temp_max);
 
       let dates = this.weatherForecast.list.map((r: any) => r.dt);
 
@@ -28,9 +28,10 @@ export class ForecastComponent implements OnInit {
         let jsdate = new Date(res * 1000);
         weatherDates.push(
           jsdate.toLocaleTimeString('en', {
-            year: 'numeric',
             month: 'short',
             day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
           })
         );
       });
@@ -52,7 +53,7 @@ export class ForecastComponent implements OnInit {
             labels: weatherDates,
             datasets: [
               {
-                data: temp_max,
+                data: temp,
                 borderColor: '#FF2D00',
                 fill: false,
               },

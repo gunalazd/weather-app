@@ -13,15 +13,14 @@ export class CurrentComponent implements OnInit {
   constructor(private ws: WeatherService) {}
 
   ngOnInit(): void {
-    this.ws.weatherInfo.subscribe((weatherInfo) => {
-      this.weatherInfo = weatherInfo;
-      this.getWeatherIcon();
+    this.ws.weatherInfo.subscribe((weatherInfo: any) => {
+      if (Object.entries(weatherInfo).length > 0) {
+        this.weatherInfo = weatherInfo;
+        this.weatherIconURL =
+          'http://openweathermap.org/img/wn/' +
+          weatherInfo.weather[0].icon +
+          '@4x.png';
+      }
     });
-  }
-
-  getWeatherIcon() {
-    let code = this.weatherInfo.weather[0].icon;
-    this.weatherIconURL =
-      'http://openweathermap.org/img/wn/' + code + '@4x.png';
   }
 }
