@@ -1,10 +1,15 @@
 .current-wrapper {
-  width: 478px;
-  border-radius: 10px;
+  width: 400px;
+  border-radius: 0 0 0 10px;
   padding: 10px;
   background: linear-gradient(#d1eefb, #8ec1da);
   color: #4e7281;
-  margin: 10px;
+  margin: 10px 0px 10px 10px;
+}
+
+.current-wrapper-all {
+  display: flex;
+  flex-direction: row;
 }
 
 .primary {
@@ -33,7 +38,11 @@
   margin-top: -40px;
 }
 
+.iframe-wrapper {
+  display: flex;
+}
+
 iframe {
-  margin-top: 10px;
-  border-radius: 7px;
+  margin: 10px 10px 10px 0;
+  border-radius: 0 0 7px 0;
 }

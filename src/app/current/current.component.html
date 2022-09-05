@@ -1,20 +1,19 @@
-<div class="current-wrapper" *ngIf="this.weatherInfo?.name">
-  <h1 class="my-class">{{ this.weatherInfo.name }}</h1>
-  <img src="{{ weatherIconURL }}" alt="" class="center" />
-  <div class="primary">{{ this.weatherInfo.main.temp }}°C</div>
-  <div class="secondary">
-    Feels like {{ this.weatherInfo.main.feels_like }}°C
+<div class="current-wrapper-all" *ngIf="this.weatherInfo?.name">
+  <div class="current-wrapper">
+    <h1 class="my-class">{{ this.weatherInfo.name }}</h1>
+    <img src="{{ weatherIconURL }}" alt="" class="center" />
+    <div class="primary">{{ this.weatherInfo.main.temp }}°C</div>
+    <div class="secondary">
+      Feels like {{ this.weatherInfo.main.feels_like }}°C
+    </div>
+    <div class="secondary">
+      {{ this.weatherInfo.weather[0].description | titlecase }}
+    </div>
+    <div class="tertiary">Humidity: {{ this.weatherInfo.main.humidity }}%</div>
+    <div class="tertiary">Clouds {{ this.weatherInfo.clouds.all }}%</div>
+    <div class="tertiary">
+      Wind speed: {{ this.weatherInfo.wind.speed }}m/s E
+    </div>
   </div>
-  <div class="secondary">
-    {{ this.weatherInfo.weather[0].description | titlecase }}
-  </div>
-  <div class="tertiary">Humidity: {{ this.weatherInfo.main.humidity }}%</div>
-  <div class="tertiary">Clouds {{ this.weatherInfo.clouds.all }}%</div>
-  <div class="tertiary">Wind speed: {{ this.weatherInfo.wind.speed }}m/s E</div>
-  <iframe
-    [src]="safeSrc"
-    style="border: 0"
-    frameborder="0"
-    width="478"
-  ></iframe>
+  <iframe [src]="safeSrc" style="border: 0" frameborder="0"></iframe>
 </div>

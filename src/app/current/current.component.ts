@@ -25,9 +25,7 @@ export class CurrentComponent implements OnInit {
 
         this.safeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
           'https://maps.google.com/maps?q=' +
-            weatherInfo.coord.lat +
-            ',' +
-            weatherInfo.coord.lon +
+            weatherInfo.name +
             '&z=7&ie=UTF8&output=embed'
         );
       }

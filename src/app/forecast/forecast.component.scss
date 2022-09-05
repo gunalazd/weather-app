@@ -7,4 +7,8 @@
   margin: 10px;
   padding: 10px;
   background: linear-gradient(#d1eefb, #8ec1da);
+
+  & h1 {
+    padding-right: 300px;
+  }
 }
