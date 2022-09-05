@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../services/weather.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-current',
@@ -9,8 +10,9 @@ import { WeatherService } from '../services/weather.service';
 export class CurrentComponent implements OnInit {
   weatherInfo: any;
   weatherIconURL: string = '';
+  safeSrc: SafeResourceUrl | undefined;
 
-  constructor(private ws: WeatherService) {}
+  constructor(private ws: WeatherService, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.ws.weatherInfo.subscribe((weatherInfo: any) => {
@@ -20,6 +22,14 @@ export class CurrentComponent implements OnInit {
           'http://openweathermap.org/img/wn/' +
           weatherInfo.weather[0].icon +
           '@4x.png';
+
+        this.safeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
+          'https://maps.google.com/maps?q=' +
+            weatherInfo.coord.lat +
+            ',' +
+            weatherInfo.coord.lon +
+            '&z=7&ie=UTF8&output=embed'
+        );
       }
     });
   }
